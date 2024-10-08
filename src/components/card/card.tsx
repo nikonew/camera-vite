@@ -1,11 +1,12 @@
 import { TCameras } from '../../types/types';
+import Rate from '../rate-product-card/rate/rate';
 
 type CameraCardProps = {
   camera: TCameras;
 }
 
 export default function Card (camera: CameraCardProps):JSX.Element {
-  const {name, price} = camera.camera;
+  const {name, price, previewImgWebp, previewImgWebp2x, previewImg, previewImg2x, reviewCount, rating} = camera.camera;
 
   return (
     <div className="product-card">
@@ -13,37 +14,23 @@ export default function Card (camera: CameraCardProps):JSX.Element {
         <picture>
           <source
             type="image/webp"
-            srcSet="img/content/das-auge.webp, img/content/das-auge@2x.webp 2x"
+            srcSet={`/${previewImgWebp}, /${previewImgWebp2x} 2x`}
           />
           <img
-            src="img/content/das-auge.jpg"
-            srcSet="img/content/das-auge@2x.jpg 2x"
+            src={`/${previewImg}`}
+            srcSet={`/${previewImg2x} 2x`}
             width={280}
             height={240}
-            alt="Ретрокамера «Das Auge IV»"
+            alt={name}
           />
         </picture>
       </div>
       <div className="product-card__info">
         <div className="rate product-card__rate">
-          <svg width={17} height={16} aria-hidden="true">
-            <use xlinkHref="#icon-full-star" />
-          </svg>
-          <svg width={17} height={16} aria-hidden="true">
-            <use xlinkHref="#icon-full-star" />
-          </svg>
-          <svg width={17} height={16} aria-hidden="true">
-            <use xlinkHref="#icon-full-star" />
-          </svg>
-          <svg width={17} height={16} aria-hidden="true">
-            <use xlinkHref="#icon-star" />
-          </svg>
-          <svg width={17} height={16} aria-hidden="true">
-            <use xlinkHref="#icon-star" />
-          </svg>
-          <p className="visually-hidden">Рейтинг: 3</p>
+          <Rate rating={rating}/>
+          <p className="visually-hidden">Рейтинг: {rating}</p>
           <p className="rate__count">
-            <span className="visually-hidden">Всего оценок:</span>23
+            <span className="visually-hidden">Всего оценок:</span>{reviewCount}
           </p>
         </div>
         <p className="product-card__title">
