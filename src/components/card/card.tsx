@@ -1,12 +1,14 @@
+import { Link } from 'react-router-dom';
 import { TCameras } from '../../types/types';
 import Rate from '../rate-product-card/rate/rate';
+import { AppRoute } from '../../app/router/router';
 
 type CameraCardProps = {
   camera: TCameras;
 }
 
 export default function Card (camera: CameraCardProps):JSX.Element {
-  const {name, price, previewImgWebp, previewImgWebp2x, previewImg, previewImg2x, reviewCount, rating} = camera.camera;
+  const {id, name, price, previewImgWebp, previewImgWebp2x, previewImg, previewImg2x, reviewCount, rating} = camera.camera;
 
   return (
     <div className="product-card">
@@ -47,9 +49,9 @@ export default function Card (camera: CameraCardProps):JSX.Element {
         >
           Купить
         </button>
-        <a className="btn btn--transparent" href="#">
+        <Link className="btn btn--transparent" to={`${AppRoute.Product}/${id}`}>
           Подробнее
-        </a>
+        </Link>
       </div>
     </div>
   );
