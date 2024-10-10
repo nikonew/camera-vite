@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export default function Banner ():JSX.Element {
   return (
     <div className="banner">
@@ -22,9 +24,9 @@ export default function Banner ():JSX.Element {
         <span className="banner__text">
         Профессиональная камера от&nbsp;известного производителя
         </span>
-        <a className="btn" href="#">
+        <Link className="btn" to='/'>
         Подробнее
-        </a>
+        </Link>
       </p>
     </div>
   );

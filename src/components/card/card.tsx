@@ -7,8 +7,8 @@ type CameraCardProps = {
   camera: TCameras;
 }
 
-export default function Card (camera: CameraCardProps):JSX.Element {
-  const {id, name, price, previewImgWebp, previewImgWebp2x, previewImg, previewImg2x, reviewCount, rating} = camera.camera;
+export default function Card ({camera}: CameraCardProps):JSX.Element {
+  const {id, name, price, previewImgWebp, previewImgWebp2x, previewImg, previewImg2x, reviewCount, rating} = camera;
 
   return (
     <div className="product-card">

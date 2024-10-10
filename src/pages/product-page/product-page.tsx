@@ -9,10 +9,12 @@ import { useEffect } from 'react';
 import NotFoundPage from '../not-found-page/not-found-page';
 import { productSelectors } from '../../store/slice/product-slice';
 import Spinner from '../../components/spinner-coponent/spinner';
+import ArrowToTop from '../../components/arrow-to-top/arrowToTop';
+
 
 export default function ProductPage () :JSX.Element {
   const dispatch = useAppDispatch();
-  const productPage = useAppSelector(productSelectors.product);
+  const productPage = useAppSelector(productSelectors.camera);
   const {id} = useParams();
   const productId = id?.trim() ?? '';
 
@@ -59,7 +61,7 @@ export default function ProductPage () :JSX.Element {
                   </picture>
                 </div>
                 <div className="product__content">
-                  <h1 className="title title--h3">Ретрокамера «Das Auge IV»</h1>
+                  <h1 className="title title--h3">{name}</h1>
                   <div className="rate product__rate">
                     <Rate rating={rating}/>
                     <p className="visually-hidden">Рейтинг: {rating}</p>
@@ -276,11 +278,7 @@ export default function ProductPage () :JSX.Element {
           </div>
         </div>
       </main>
-      <a className="up-btn" href="#header">
-        <svg width={12} height={18} aria-hidden="true">
-          <use xlinkHref="#icon-arrow2" />
-        </svg>
-      </a>
+      <ArrowToTop/>
       <Footer/>
     </div>
   );

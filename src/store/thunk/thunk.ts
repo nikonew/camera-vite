@@ -13,7 +13,7 @@ export const fetchAllCameras = createAsyncThunk<TCameras[], undefined, { extra: 
 });
 
 export const fetchProduct = createAsyncThunk<TCameras, string, { extra: AxiosInstance}>
-('fetchProduct/one', async (productId, { extra: api}) => {
+('fetchProductPage/one', async (productId, { extra: api}) => {
   const response = await api.get<TCameras>(`${APIRoute.Catalog}/${productId}`);
   return response.data;
 });

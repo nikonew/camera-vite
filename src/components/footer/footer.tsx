@@ -1,53 +1,55 @@
+import { Link } from 'react-router-dom';
+
 export default function Footer ():JSX.Element {
   return (
     <footer className="footer">
       <div className="container">
         <div className="footer__info">
-          <a
+          <Link
             className="footer__logo"
-            href="index.html"
+            to=''
             aria-label="Переход на главную"
           >
             <svg width={100} height={36} aria-hidden="true">
               <use xlinkHref="#icon-logo-mono" />
             </svg>
-          </a>
+          </Link>
           <p className="footer__description">
           Интернет-магазин фото- и видеотехники
           </p>
           <ul className="social">
             <li className="social__item">
-              <a
+              <Link
                 className="link"
-                href="#"
+                to=''
                 aria-label="Переход на страницу вконтатке"
               >
                 <svg width={20} height={20} aria-hidden="true">
                   <use xlinkHref="#icon-vk" />
                 </svg>
-              </a>
+              </Link>
             </li>
             <li className="social__item">
-              <a
+              <Link
                 className="link"
-                href="#"
+                to=''
                 aria-label="Переход на страницу pinterest"
               >
                 <svg width={20} height={20} aria-hidden="true">
                   <use xlinkHref="#icon-pinterest" />
                 </svg>
-              </a>
+              </Link>
             </li>
             <li className="social__item">
-              <a
+              <Link
                 className="link"
-                href="#"
+                to=''
                 aria-label="Переход на страницу reddit"
               >
                 <svg width={20} height={20} aria-hidden="true">
                   <use xlinkHref="#icon-reddit" />
                 </svg>
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -56,14 +58,14 @@ export default function Footer ():JSX.Element {
             <p className="footer__title">Навигация</p>
             <ul className="footer__list">
               <li className="footer__item">
-                <a className="link" href="#">
+                <Link className="link" to=''>
                 Каталог
-                </a>
+                </Link>
               </li>
               <li className="footer__item">
-                <a className="link" href="#">
+                <Link className="link" to=''>
                 Гарантии
-                </a>
+                </Link>
               </li>
               <li className="footer__item">
                 <a className="link" href="#">
@@ -71,9 +73,9 @@ export default function Footer ():JSX.Element {
                 </a>
               </li>
               <li className="footer__item">
-                <a className="link" href="#">
+                <Link className="link" to=''>
                 О компании
-                </a>
+                </Link>
               </li>
             </ul>
           </li>
@@ -81,19 +83,19 @@ export default function Footer ():JSX.Element {
             <p className="footer__title">Ресурсы</p>
             <ul className="footer__list">
               <li className="footer__item">
-                <a className="link" href="#">
+                <Link className="link" to=''>
                 Курсы операторов
-                </a>
+                </Link>
               </li>
               <li className="footer__item">
-                <a className="link" href="#">
+                <Link className="link" to=''>
                 Блог
-                </a>
+                </Link>
               </li>
               <li className="footer__item">
-                <a className="link" href="#">
+                <Link className="link" to=''>
                 Сообщество
-                </a>
+                </Link>
               </li>
             </ul>
           </li>
@@ -101,14 +103,14 @@ export default function Footer ():JSX.Element {
             <p className="footer__title">Поддержка</p>
             <ul className="footer__list">
               <li className="footer__item">
-                <a className="link" href="#">
+                <Link className="link" to=''>
                 FAQ
-                </a>
+                </Link>
               </li>
               <li className="footer__item">
-                <a className="link" href="#">
+                <Link className="link" to=''>
                 Задать вопрос
-                </a>
+                </Link>
               </li>
             </ul>
           </li>

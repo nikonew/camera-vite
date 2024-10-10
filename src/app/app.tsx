@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { useAppDispatch } from '../hook/hook-store';
 import { fetchAllCameras } from '../store/thunk/thunk';
 import ProductPage from '../pages/product-page/product-page';
+import NotFoundPage from '../pages/not-found-page/not-found-page';
 
 
 export default function App(): JSX.Element {
@@ -30,6 +31,10 @@ export default function App(): JSX.Element {
           element={
             <ProductPage/>
           }
+        />
+        <Route
+          path="*"
+          element={<NotFoundPage />}
         />
       </Routes>
     </BrowserRouter>

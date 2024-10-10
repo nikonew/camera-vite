@@ -27,10 +27,10 @@ export const productSlice = createSlice({
         state.status = RequestStatus.Failed;
       }),
   initialState,
-  name: 'product',
+  name: 'camera',
   reducers: {},
   selectors: {
-    product: (state: ProductState) => state.product
+    camera: (state: ProductState) => state.product
   }
 });
 
