@@ -3,7 +3,7 @@ import Catalog from '../pages/catalog/catalog';
 import { AppRoute } from './router/router';
 import { useEffect } from 'react';
 import { useAppDispatch } from '../hook/hook-store';
-import { fetchAllCameras } from '../store/thunk/thunk';
+import { fetchAllCameras, fetchAllReviews } from '../store/thunk/thunk';
 import ProductPage from '../pages/product-page/product-page';
 import NotFoundPage from '../pages/not-found-page/not-found-page';
 
@@ -16,6 +16,9 @@ export default function App(): JSX.Element {
     dispatch(fetchAllCameras());
   });
 
+  useEffect (() => {
+    dispatch(fetchAllReviews());
+  });
 
   return (
     <BrowserRouter>
