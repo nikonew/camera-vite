@@ -11,7 +11,7 @@ import { productSelectors } from '../../store/slice/product-slice';
 import Spinner from '../../components/spinner-coponent/spinner';
 import ArrowToTop from '../../components/arrow-to-top/arrowToTop';
 import ReviewsContainer from '../../components/reviews-container/reviews-container';
-import ShowMoreButton from '../../components/show-more-button/show-more-button';
+import ProductTubs from '../../components/product-tubs/product-tubs';
 
 
 export default function ProductPage () :JSX.Element {
@@ -86,45 +86,7 @@ export default function ProductPage () :JSX.Element {
                     </svg>
                 Добавить в корзину
                   </button>
-                  <div className="tabs product__tabs">
-                    <div className="tabs__controls product__tabs-controls">
-                      <button className="tabs__control" type="button">
-                    Характеристики
-                      </button>
-                      <button className="tabs__control is-active" type="button">
-                    Описание
-                      </button>
-                    </div>
-                    <div className="tabs__content">
-                      <div className="tabs__element">
-                        <ul className="product__tabs-list">
-                          <li className="item-list">
-                            <span className="item-list__title">Артикул:</span>
-                            <p className="item-list__text"> {vendorCode}</p>
-                          </li>
-                          <li className="item-list">
-                            <span className="item-list__title">Категория:</span>
-                            <p className="item-list__text">{category}</p>
-                          </li>
-                          <li className="item-list">
-                            <span className="item-list__title">Тип камеры:</span>
-                            <p className="item-list__text">{type}</p>
-                          </li>
-                          <li className="item-list">
-                            <span className="item-list__title">Уровень:</span>
-                            <p className="item-list__text">{level}</p>
-                          </li>
-                        </ul>
-                      </div>
-                      <div className="tabs__element is-active">
-                        <div className="product__tabs-text">
-                          <p>
-                            {description}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <ProductTubs vendorCode= {vendorCode} category={category} type={type} level={level} description={description}/>
                 </div>
               </div>
             </section>
@@ -137,7 +99,6 @@ export default function ProductPage () :JSX.Element {
                   {/*<button class="btn" type="button">Оставить свой отзыв</button>*/}
                 </div>
                 <ReviewsContainer/>
-                <ShowMoreButton/>
               </div>
             </section>
           </div>

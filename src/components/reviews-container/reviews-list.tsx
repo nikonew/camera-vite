@@ -1,4 +1,5 @@
 import { TReviews } from '../../types/types';
+import { formatDateOption } from '../../util';
 import Rate from '../rate-product-card/rate/rate';
 
 type ReviewListProps = {
@@ -7,7 +8,7 @@ type ReviewListProps = {
 
 export default function ReviewList ({reviewProps}: ReviewListProps):JSX.Element {
 
-  const {userName,advantage,disadvantage,rating,review} = reviewProps;
+  const {userName, createAt, advantage, disadvantage, rating, review} = reviewProps;
 
   return(
     <ul className="review-block__list">
@@ -15,7 +16,7 @@ export default function ReviewList ({reviewProps}: ReviewListProps):JSX.Element 
         <div className="review-card__head">
           <p className="title title--h4">{userName} </p>
           <time className="review-card__data" dateTime="2021-12-30">
-            30 декабря
+            {formatDateOption(createAt)}
           </time>
         </div>
         <div className="rate review-card__rate">

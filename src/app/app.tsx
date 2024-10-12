@@ -14,9 +14,6 @@ export default function App(): JSX.Element {
 
   useEffect (() => {
     dispatch(fetchAllCameras());
-  });
-
-  useEffect (() => {
     dispatch(fetchAllReviews());
   });
 
