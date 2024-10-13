@@ -12,11 +12,13 @@ import Spinner from '../../components/spinner-coponent/spinner';
 import ArrowToTop from '../../components/arrow-to-top/arrowToTop';
 import ReviewsContainer from '../../components/reviews-container/reviews-container';
 import ProductTubs from '../../components/product-tubs/product-tubs';
+import ProductSimilarContainer from '../../components/product-similar/product-similar-container';
 
 
 export default function ProductPage () :JSX.Element {
   const dispatch = useAppDispatch();
   const productPage = useAppSelector(productSelectors.camera);
+
   const {id} = useParams();
   const productId = id?.trim() ?? '';
 
@@ -90,6 +92,9 @@ export default function ProductPage () :JSX.Element {
                 </div>
               </div>
             </section>
+          </div>
+          <div className="page-content__section">
+            <ProductSimilarContainer/>
           </div>
           <div className="page-content__section">
             <section className="review-block">

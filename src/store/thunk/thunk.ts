@@ -5,6 +5,7 @@ import { TCameras, TReviews } from '../../types/types';
 export enum APIRoute {
   Catalog = '/cameras',
   Review = '/reviews',
+  Similar = '/similar',
 }
 
 export const fetchAllCameras = createAsyncThunk<TCameras[], undefined, { extra: AxiosInstance}>
@@ -24,3 +25,10 @@ export const fetchAllReviews = createAsyncThunk<TReviews[], undefined, { extra: 
   const response = await api.get<TReviews[]>(APIRoute.Review);
   return response.data;
 });
+
+export const fetchAllSimilar = createAsyncThunk<TCameras[], string, { extra: AxiosInstance}>
+('fetchSimilar/all', async (productId, { extra: api}) => {
+  const response = await api.get<TCameras[]>(`${APIRoute.Catalog}/${productId}${APIRoute.Similar}`);
+  return response.data;
+});
+
