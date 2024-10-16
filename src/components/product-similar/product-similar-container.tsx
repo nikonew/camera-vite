@@ -48,7 +48,7 @@ export default function ProductSimilarContainer ():JSX.Element {
             <Swiper
               slidesPerView={3}
               slidesPerGroup={3}
-              spaceBetween={30}
+              spaceBetween={100}
               modules={[Navigation]}
               navigation={{
                 prevEl: '.slider-controls--prev',
@@ -57,7 +57,7 @@ export default function ProductSimilarContainer ():JSX.Element {
             >
               {similar.map((item) => (
                 <SwiperSlide key={item.id}>
-                  <SimilarItem key={item.id} item={item}/>
+                  <SimilarItem key={item.id} item={item} style={{ width: '100%', margin: 0 }}/>
                 </SwiperSlide>
               ))}
             </Swiper>

@@ -5,7 +5,7 @@ type ProductTabsProps = Pick<TCameras, 'vendorCode' | 'category' | 'type' | 'lev
 
 export default function ProductTubs ({vendorCode, category, type, level, description}: ProductTabsProps):JSX.Element {
   const [isClickDescription, setIsClickDescription] = useState(false);
-  const [isClickCharacteristics, setIsClickCharacteristics] = useState(false);
+  const [isClickCharacteristics, setIsClickCharacteristics] = useState(true);
 
   const clickCharacteristics = useCallback(() => {
     setIsClickDescription(false);

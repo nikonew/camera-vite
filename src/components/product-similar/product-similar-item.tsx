@@ -2,12 +2,14 @@ import { Link } from 'react-router-dom';
 import { TCameras } from '../../types/types';
 import { AppRoute } from '../../app/router/router';
 import Rate from '../rate-product-card/rate/rate';
+import { CSSProperties } from 'react';
 
 type SimilarItemProps = {
   item: TCameras;
+  style: CSSProperties;
 }
 
-export default function SimilarItem ({item}: SimilarItemProps):JSX.Element {
+export default function SimilarItem ({item,style}: SimilarItemProps):JSX.Element {
 
   const {id,name,
     rating,
@@ -15,7 +17,7 @@ export default function SimilarItem ({item}: SimilarItemProps):JSX.Element {
     previewImg2x, reviewCount, price} = item;
 
   return (
-    <div className="product-card is-active">
+    <div className="product-card is-active" style={style}>
       <div className="product-card__img">
         <picture>
           <source
