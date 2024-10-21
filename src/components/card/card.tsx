@@ -5,10 +5,16 @@ import { AppRoute } from '../../app/router/router';
 
 type CameraCardProps = {
   camera: TCameras;
+  onClick: (cameraId: TCameras['id']) => void;
 }
 
-export default function Card ({camera}: CameraCardProps):JSX.Element {
+export default function Card ({camera, onClick}: CameraCardProps):JSX.Element {
   const {id, name, price, previewImgWebp, previewImgWebp2x, previewImg, previewImg2x, reviewCount, rating} = camera;
+
+  const handleClick = () => {
+    onClick(id);
+  };
+
 
   return (
     <div className="product-card">
@@ -46,6 +52,7 @@ export default function Card ({camera}: CameraCardProps):JSX.Element {
         <button
           className="btn btn--purple product-card__btn"
           type="button"
+          onClick={handleClick}
         >
           Купить
         </button>

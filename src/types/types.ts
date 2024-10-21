@@ -25,3 +25,9 @@ export type TReviews = {
     'review': string;
     'rating': number;
 }
+
+export type TOrder = {
+    camerasIds: number[];
+    coupon: string | null;
+    tel: string;
+  }
