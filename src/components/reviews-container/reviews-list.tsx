@@ -2,12 +2,12 @@ import { TReviews } from '../../types/types';
 import { formatDateOption } from '../../util';
 import Rate from '../rate-product-card/rate/rate';
 
+
 type ReviewListProps = {
     reviewProps: TReviews;
 }
 
 export default function ReviewList ({reviewProps}: ReviewListProps):JSX.Element {
-
   const {userName, createAt, advantage, disadvantage, rating, review} = reviewProps;
 
   return(
