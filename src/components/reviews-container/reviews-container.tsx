@@ -8,9 +8,9 @@ import { useParams } from 'react-router-dom';
 
 
 export default function ReviewsContainer ():JSX.Element {
-  const [clickToButton, setClickToButton] = useState(REVIEW_COUNT);
   const dispatch = useAppDispatch();
   const reviews = useAppSelector(reviewsSelectors.reviews);
+  const [clickToButton, setClickToButton] = useState(REVIEW_COUNT);
   const {id} = useParams();
   const productId = id?.trim() ?? '';
 
@@ -20,19 +20,17 @@ export default function ReviewsContainer ():JSX.Element {
 
 
   const handleClickToButton = () => {
-    setClickToButton(clickToButton + 3);
+    setClickToButton(clickToButton + REVIEW_COUNT);
   };
 
 
-  //const sortReviewsByDate = [...reviews].sort((a,b)=> new Date(b.createAt).getTime() - new Date(a.createAt).getTime());
-
-  const reviewLenght = reviews.length;
+  const sortReviewsByDate = reviews && [...reviews].sort((a,b)=> Date.parse(b.createAt) - Date.parse(a.createAt));
 
   return (
     <>
-      {reviews.slice(0,clickToButton).map((review) => (<ReviewList key={review.id} reviewProps={review}/>))}
+      {reviews.length > 0 ? sortReviewsByDate.slice(0,clickToButton).map((review) => <ReviewList key={review.id} reviewProps={review}/>) : <li className="review-card">Ваш отзыв будет первым</li>}
       <div className="review-block__buttons">
-        { reviewLenght > clickToButton && (
+        { sortReviewsByDate.length > clickToButton && (
           <button className="btn btn--purple"
             type="button"
             onClick={handleClickToButton}

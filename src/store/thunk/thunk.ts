@@ -40,4 +40,3 @@ export const postOrder = createAsyncThunk<TOrder, void, { extra: AxiosInstance}>
   const response = await api.post<TOrder>(APIRoute.Orders, order);
   return response.data;
 });
-
