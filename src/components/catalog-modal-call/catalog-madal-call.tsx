@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { TCameras } from '../../types/types';
 import ModalPhoneInput from './modal-phone-input';
 
@@ -8,11 +9,28 @@ type CatalogModalCallProps = {
 
 export default function CatalogModalCall ({camera, onClose}: CatalogModalCallProps):JSX.Element | null {
 
+  useEffect(
+    () => {
+      const handleEscapeKey = (event: KeyboardEvent) => {
+        if (event.code === 'Escape') {
+          onClose();
+        }
+      };
+
+      document.addEventListener('keydown', handleEscapeKey);
+
+      return () => {
+        document.removeEventListener('keydown', handleEscapeKey);
+      };
+    },
+    [onClose]
+  );
+
   if (!camera) {
     return null;
   }
 
-  const {name, vendorCode, level, type, price, previewImgWebp2x,previewImgWebp, previewImg2x, previewImg} = camera;
+  const {id, name, vendorCode, level, type, price, previewImgWebp2x,previewImgWebp, previewImg2x, previewImg} = camera;
 
   return (
     <div className="modal is-active">
@@ -51,7 +69,7 @@ export default function CatalogModalCall ({camera, onClose}: CatalogModalCallPro
               </p>
             </div>
           </div>
-          <ModalPhoneInput/>
+          <ModalPhoneInput idCamera={id}/>
           <button className="cross-btn" type="button" aria-label="Закрыть попап" onClick={onClose}>
             <svg width={10} height={10} aria-hidden="true">
               <use xlinkHref="#icon-close" />

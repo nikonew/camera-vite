@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import NotFoundPage from '../not-found-page/not-found-page';
 import { productSelectors } from '../../store/slice/product-slice';
 import Spinner from '../../components/spinner-coponent/spinner';
-import ArrowToTop from '../../components/arrow-to-top/arrowToTop';
+import ArrowToTop from '../../components/arrow-to-top/arrow-to-top';
 import ReviewsContainer from '../../components/reviews-container/reviews-container';
 import ProductTubs from '../../components/product-tubs/product-tubs';
 import ProductSimilarContainer from '../../components/product-similar/product-similar-container';

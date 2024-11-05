@@ -53,7 +53,7 @@ export default function SimilarItem ({item,style}: SimilarItemProps):JSX.Element
         >
                 Купить
         </button>
-        <Link className="btn btn--transparent" to={`${AppRoute.Product}/${id}`}>
+        <Link to={`${AppRoute.Product}/${id}`} className="btn btn--transparent">
                 Подробнее
         </Link>
       </div>

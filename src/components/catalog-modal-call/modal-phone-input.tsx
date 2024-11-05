@@ -1,27 +1,28 @@
-import { useForm } from 'react-hook-form';
 import { useAppDispatch } from '../../hook/hook-store';
 import { postOrder } from '../../store/thunk/thunk';
-import { useEffect } from 'react';
+import { useEffect} from 'react';
+import { InputMask } from '@react-input/mask';
+import { TOrder } from '../../types/types';
 
-
-type ModalPhoneInput = {
-    userTel: string;
+type ModalPhoneInputProps = {
+  idCamera: number;
 }
 
-export default function ModalPhoneInput (): JSX.Element {
-  const {
-    register,
-    formState: { errors },
-  } = useForm<ModalPhoneInput>();
+export default function ModalPhoneInput ({idCamera}: ModalPhoneInputProps): JSX.Element {
   const dispatch = useAppDispatch();
 
   useEffect (() => {
-    dispatch(postOrder);
+    const order: TOrder = {
+      tel: '',
+      coupon: null,
+      camerasIds: [idCamera]
+    };
+    dispatch(postOrder(order));
   });
 
 
   return (
-    <form >
+    <>
       <div className="custom-input form-review__item">
         <label>
           <span className="custom-input__label">
@@ -30,18 +31,14 @@ export default function ModalPhoneInput (): JSX.Element {
               <use xlinkHref="#icon-snowflake" />
             </svg>
           </span>
-          <input
+          <InputMask
+            mask="+7 (___) ___-__-__"
+            replacement={{ _: /\d/ }}
             type="tel"
-            placeholder="Введите ваш номер"
-            {...register('userTel',{
-              required: true,
-              pattern:{
-                value: /^(\+7|8)\s*\(?9\d{2}\)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/,
-                message: 'Пожалуйста, введите действительный номер'
-              }})}
+            placeholder="Введите ваш номер +7 (__) ___-__-__ "
           />
         </label>
-        {errors.userTel?.type === 'required' && <p className="custom-input__error">{errors.userTel.message}</p>}
+        <p className="custom-input__error"></p>
       </div>
       <div className="modal__buttons">
         <button
@@ -54,6 +51,7 @@ export default function ModalPhoneInput (): JSX.Element {
           Заказать
         </button>
       </div>
-    </form>
+    </>
+
   );
 }

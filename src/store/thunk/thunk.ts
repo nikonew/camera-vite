@@ -35,8 +35,7 @@ export const fetchAllSimilar = createAsyncThunk<TCameras[], string, { extra: Axi
   return response.data;
 });
 
-export const postOrder = createAsyncThunk<TOrder, void, { extra: AxiosInstance}>
+export const postOrder = createAsyncThunk<void, TOrder, { extra: AxiosInstance}>
 ('postOrderAction', async (order, { extra: api}) => {
-  const response = await api.post<TOrder>(APIRoute.Orders, order);
-  return response.data;
+  await api.post(APIRoute.Orders, order);
 });

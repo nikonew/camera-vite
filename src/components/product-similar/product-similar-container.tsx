@@ -48,7 +48,7 @@ export default function ProductSimilarContainer ():JSX.Element {
             <Swiper
               slidesPerView={3}
               slidesPerGroup={3}
-              spaceBetween={100}
+              spaceBetween={50}
               modules={[Navigation]}
               navigation={{
                 prevEl: '.slider-controls--prev',
