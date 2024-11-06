@@ -1,6 +1,5 @@
 import { useAppDispatch } from '../../hook/hook-store';
 import { postOrder } from '../../store/thunk/thunk';
-import { useEffect} from 'react';
 import { InputMask } from '@react-input/mask';
 import { TOrder } from '../../types/types';
 
@@ -11,15 +10,15 @@ type ModalPhoneInputProps = {
 export default function ModalPhoneInput ({idCamera}: ModalPhoneInputProps): JSX.Element {
   const dispatch = useAppDispatch();
 
-  useEffect (() => {
+
+  const handleClickButtonOrder = () => {
     const order: TOrder = {
       tel: '',
       coupon: null,
       camerasIds: [idCamera]
     };
     dispatch(postOrder(order));
-  });
-
+  };
 
   return (
     <>
@@ -46,6 +45,7 @@ export default function ModalPhoneInput ({idCamera}: ModalPhoneInputProps): JSX.
         <button
           className="btn btn--purple modal__btn modal__btn--fit-width"
           type="submit"
+          onClick={handleClickButtonOrder}
         >
           <svg width={24} height={16} aria-hidden="true">
             <use xlinkHref="#icon-add-basket" />

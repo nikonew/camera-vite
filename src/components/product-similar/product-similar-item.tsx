@@ -29,7 +29,7 @@ export default function SimilarItem ({item,style}: SimilarItemProps):JSX.Element
             srcSet={`/${previewImg2x} 2x`}
             width={280}
             height={240}
-            //alt={name}
+            alt={name}
           />
         </picture>
       </div>
