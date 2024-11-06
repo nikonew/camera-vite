@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { TCameras } from '../../types/types';
 import ModalPhoneInput from './modal-phone-input';
 
@@ -7,15 +8,65 @@ type CatalogModalCallProps = {
 }
 
 export default function CatalogModalCall ({camera, onClose}: CatalogModalCallProps):JSX.Element | null {
+  const inputRef = useRef<HTMLDivElement>(null);
+
+  useEffect(
+    () => {
+      const handleEscapeKey = (event: KeyboardEvent) => {
+        if (event.code === 'Escape') {
+          onClose();
+        }
+      };
+
+      document.addEventListener('keydown', handleEscapeKey);
+
+      return () => {
+        document.removeEventListener('keydown', handleEscapeKey);
+      };
+    },
+    [onClose]
+  );
+
+  useEffect(() => {
+    const focusableElements = inputRef.current?.querySelectorAll<HTMLElement>(
+      'button, input, [href], [tabindex]:not([tabindex="-1"])'
+    );
+    const firstElement = focusableElements?.[0];
+    const lastElement = focusableElements?.[focusableElements.length - 1];
+
+    const handleTabKey = (event: KeyboardEvent) => {
+      if (!focusableElements || focusableElements.length === 0) {
+        return;
+      }
+
+      if (event.key === 'Tab') {
+        if (event.shiftKey && document.activeElement === firstElement) {
+          lastElement?.focus();
+          event.preventDefault();
+        } else if (!event.shiftKey && document.activeElement === lastElement) {
+          firstElement?.focus();
+          event.preventDefault();
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleTabKey);
+
+    return () => {
+      window.removeEventListener('keydown', handleTabKey);
+    };
+  }, []);
+
 
   if (!camera) {
     return null;
   }
 
-  const {name, vendorCode, level, type, price, previewImgWebp2x,previewImgWebp, previewImg2x, previewImg} = camera;
+
+  const {id, name, vendorCode, level, type, price, previewImgWebp2x,previewImgWebp, previewImg2x, previewImg} = camera;
 
   return (
-    <div className="modal is-active">
+    <div className="modal is-active" ref={inputRef}>
       <div className="modal__wrapper">
         <div className="modal__overlay" />
         <div className="modal__content">
@@ -51,7 +102,7 @@ export default function CatalogModalCall ({camera, onClose}: CatalogModalCallPro
               </p>
             </div>
           </div>
-          <ModalPhoneInput/>
+          <ModalPhoneInput idCamera={id}/>
           <button className="cross-btn" type="button" aria-label="Закрыть попап" onClick={onClose}>
             <svg width={10} height={10} aria-hidden="true">
               <use xlinkHref="#icon-close" />

@@ -21,10 +21,12 @@ export default function Catalog () :JSX.Element {
   const handleModalOpen = (cameraId: TCameras['id']) => {
     setMounted(true);
     setClickCamera(cameraId);
+    document.body.classList.add('scroll-lock');
   };
 
   const handleModalClose = () => {
     setMounted(false);
+    document.body.classList.remove('scroll-lock');
   };
 
   return (
