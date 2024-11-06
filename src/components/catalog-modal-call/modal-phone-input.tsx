@@ -32,6 +32,8 @@ export default function ModalPhoneInput ({idCamera}: ModalPhoneInputProps): JSX.
             </svg>
           </span>
           <InputMask
+            autoFocus
+            onFocus={(e) => e.currentTarget.select()}
             mask="+7 (___) ___-__-__"
             replacement={{ _: /\d/ }}
             type="tel"
