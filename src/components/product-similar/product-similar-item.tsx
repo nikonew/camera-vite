@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { TCameras } from '../../types/types';
-import { AppRoute } from '../../app/router/router';
 import Rate from '../rate-product-card/rate/rate';
 import { CSSProperties } from 'react';
 
@@ -53,7 +52,7 @@ export default function SimilarItem ({item,style}: SimilarItemProps):JSX.Element
         >
                 Купить
         </button>
-        <Link to={`${AppRoute.Product}/${id}`} className="btn btn--transparent">
+        <Link to={`/product/${id}`} className="btn btn--transparent">
                 Подробнее
         </Link>
       </div>
