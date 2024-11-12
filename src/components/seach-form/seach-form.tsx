@@ -5,6 +5,7 @@ import { Link} from 'react-router-dom';
 import { MIN_NUMBER_OF_CHARACTERS_SEACH } from '../../const';
 import { TCameras } from '../../types/types';
 import cn from 'classnames';
+import { AppRoute } from '../../app/router/router';
 
 
 export default function SeachForm ():JSX.Element {
@@ -12,7 +13,6 @@ export default function SeachForm ():JSX.Element {
 
   const [query, setQuery] = useState('');
   const [searchData, setSearchData] = useState<TCameras[]>([]);
-  const [, setSelectedItem] = useState<number>(-1);
   const inputRef = useRef<HTMLDivElement>(null);
 
   const handleChangeSearchInput = (event: ChangeEvent<HTMLInputElement>) => {
@@ -86,7 +86,7 @@ export default function SeachForm ():JSX.Element {
         {searchData.length !== 0 && query.length >= MIN_NUMBER_OF_CHARACTERS_SEACH &&
         <ul className="form-search__select-list">
           {searchData.map((camera) => (
-            <Link to={`/product/${camera.id}`} key={camera.id}>
+            <Link to={`${AppRoute.Product}/${camera.id}`} key={camera.id}>
               <li
                 className="form-search__select-item"
                 tabIndex={-1}

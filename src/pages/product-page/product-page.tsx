@@ -49,7 +49,7 @@ export default function ProductPage () :JSX.Element {
         <div className="page-content">
           <div className="breadcrumbs">
             <div className="container">
-              <Breadcrumbs/>
+              <Breadcrumbs name={name}/>
             </div>
           </div>
           <div className="page-content__section">

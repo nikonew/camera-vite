@@ -26,7 +26,7 @@ export default function App(): JSX.Element {
           }
         />
         <Route
-          path={`${AppRoute.Product}/:id`}
+          path={`${AppRoute.Product}/${AppRoute.ProductId}`}
           element={
             <ProductPage/>
           }

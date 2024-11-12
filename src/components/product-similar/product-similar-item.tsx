@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { TCameras } from '../../types/types';
 import Rate from '../rate-product-card/rate/rate';
 import { CSSProperties } from 'react';
+import { AppRoute } from '../../app/router/router';
+import { scrollToTop } from '../../util';
 
 type SimilarItemProps = {
   item: TCameras;
@@ -52,7 +54,11 @@ export default function SimilarItem ({item,style}: SimilarItemProps):JSX.Element
         >
                 Купить
         </button>
-        <Link to={`/product/${id}`} className="btn btn--transparent">
+        <Link
+          onClick={() => scrollToTop()}
+          to={`${AppRoute.Product}/${id}`}
+          className="btn btn--transparent"
+        >
                 Подробнее
         </Link>
       </div>

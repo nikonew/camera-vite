@@ -8,3 +8,10 @@ export const formatDateOption = (isoDate: string) => {
   return date.toLocaleDateString('ru-RU', options);
 };
 
+export const scrollToTop = (behavior: ScrollBehavior = 'auto') => {
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior
+  });
+};

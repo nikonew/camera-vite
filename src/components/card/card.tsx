@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { TCameras } from '../../types/types';
 import Rate from '../rate-product-card/rate/rate';
 import { AppRoute } from '../../app/router/router';
+import { scrollToTop } from '../../util';
 
 type CameraCardProps = {
   camera: TCameras;
@@ -56,7 +57,11 @@ export default function Card ({camera, onClick}: CameraCardProps):JSX.Element {
         >
           Купить
         </button>
-        <Link className="btn btn--transparent" to={`${AppRoute.Product}/${id}`}>
+        <Link
+          onClick={() => scrollToTop()}
+          className="btn btn--transparent"
+          to={`${AppRoute.Product}/${id}`}
+        >
           Подробнее
         </Link>
       </div>
