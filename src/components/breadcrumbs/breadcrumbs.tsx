@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { AppRoute } from '../../app/router/router';
 
 type breadcrumbsProps = {
-  name: string;
+  name?: string;
 }
 
 export default function Breadcrumbs ({name}: breadcrumbsProps):JSX.Element {

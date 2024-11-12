@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route} from 'react-router-dom';
+import { Routes, Route} from 'react-router-dom';
 import Catalog from '../pages/catalog/catalog';
 import { AppRoute } from './router/router';
 import { useEffect } from 'react';
@@ -6,6 +6,7 @@ import { useAppDispatch } from '../hook/hook-store';
 import { fetchAllCameras } from '../store/thunk/thunk';
 import ProductPage from '../pages/product-page/product-page';
 import NotFoundPage from '../pages/not-found-page/not-found-page';
+import { HelmetProvider } from 'react-helmet-async';
 
 
 export default function App(): JSX.Element {
@@ -17,7 +18,7 @@ export default function App(): JSX.Element {
   });
 
   return (
-    <BrowserRouter>
+    <HelmetProvider>
       <Routes>
         <Route
           path={AppRoute.Catalog}
@@ -36,7 +37,7 @@ export default function App(): JSX.Element {
           element={<NotFoundPage />}
         />
       </Routes>
-    </BrowserRouter>
+    </HelmetProvider>
   );
 }
 
