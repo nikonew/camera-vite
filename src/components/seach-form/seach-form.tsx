@@ -56,16 +56,6 @@ export default function SeachForm ():JSX.Element {
     };
   }, []);
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-
-    if (event.key === 'ArrowDown' && searchData.length > 0) {
-      event.preventDefault();
-      setSelectedItem((prevItem) => (prevItem === -1 ? searchData.length - 1 : prevItem - 1));
-    } else if (event.key === 'ArrowUp') {
-      event.preventDefault();
-      setSelectedItem((prevItem) => (prevItem === searchData.length - 1 ? -1 : prevItem + 1));
-    }
-  };
 
   const handelReset = () => {
     setQuery('');
@@ -91,7 +81,6 @@ export default function SeachForm ():JSX.Element {
             autoComplete="off"
             placeholder="Поиск по сайту"
             onChange={handleChangeSearchInput}
-            onKeyDown={handleKeyDown}
           />
         </label>
         {searchData.length !== 0 && query.length >= MIN_NUMBER_OF_CHARACTERS_SEACH &&
