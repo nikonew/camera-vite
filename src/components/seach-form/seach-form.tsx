@@ -58,7 +58,7 @@ export default function SeachForm ():JSX.Element {
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
 
-    if (event.key === 'ArrowDown') {
+    if (event.key === 'ArrowDown' && searchData.length > 0) {
       event.preventDefault();
       setSelectedItem((prevItem) => (prevItem === -1 ? searchData.length - 1 : prevItem - 1));
     } else if (event.key === 'ArrowUp') {
@@ -95,11 +95,7 @@ export default function SeachForm ():JSX.Element {
           />
         </label>
         {searchData.length !== 0 && query.length >= MIN_NUMBER_OF_CHARACTERS_SEACH &&
-        <ul className="form-search__select-list" style={{
-          paddingRight: '4px',
-          overflow: 'auto',
-        }}
-        >
+        <ul className="form-search__select-list">
           {searchData.map((camera) => (
             <Link to={`/product/${camera.id}`} key={camera.id}>
               <li
