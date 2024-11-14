@@ -1,15 +1,15 @@
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { useAppSelector } from '../../hook/hook-store';
-import { camerasSelectors } from '../../store/slice/cameras-slice';
 import { Link} from 'react-router-dom';
 import { MIN_NUMBER_OF_CHARACTERS_SEACH } from '../../const';
 import { TCameras } from '../../types/types';
 import cn from 'classnames';
 import { AppRoute } from '../../app/router/router';
+import { selectCameras } from '../../store/selectors/cameras-selectors';
 
 
 export default function SeachForm ():JSX.Element {
-  const cameras = useAppSelector(camerasSelectors.cameras);
+  const cameras = useAppSelector(selectCameras);
 
   const [query, setQuery] = useState('');
   const [searchData, setSearchData] = useState<TCameras[]>([]);

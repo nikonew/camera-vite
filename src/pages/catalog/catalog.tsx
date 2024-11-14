@@ -5,17 +5,19 @@ import Card from '../../components/card/card';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 import { useAppSelector } from '../../hook/hook-store';
-import { camerasSelectors } from '../../store/slice/cameras-slice';
 import CatalogModalCall from '../../components/catalog-modal-call/catalog-madal-call';
 import { TCameras } from '../../types/types';
+import SortCatalog from '../../components/sort-catalog/sort-catalog';
+import { selectSortCameras } from '../../store/selectors/cameras-selectors';
+import Spinner from '../../components/spinner-coponent/spinner';
 
 
 export default function Catalog () :JSX.Element {
   const [isMounted, setMounted] = useState(false);
   const [clickCamera, setClickCamera] = useState<TCameras['id'] | null>(null);
 
-  const cameras = useAppSelector(camerasSelectors.cameras);
-  const selectCamera = clickCamera ? cameras.find((currentCamera)=> currentCamera.id === clickCamera) ?? null : null;
+  const currentCameras = useAppSelector(selectSortCameras);
+  const selectCamera = clickCamera ? currentCameras.find((currentCamera)=> currentCamera.id === clickCamera) ?? null : null;
 
 
   const handleModalOpen = (cameraId: TCameras['id']) => {
@@ -44,8 +46,9 @@ export default function Catalog () :JSX.Element {
                   <img src="img/banner.png" />
                 </div>
                 <div className="catalog__content">
+                  <SortCatalog/>
                   <div className="cards catalog__cards">
-                    {cameras.map((camera) => (<Card key={camera.id} camera={camera} onClick={handleModalOpen }/>))}
+                    {currentCameras.length !== 0 ? currentCameras.map((camera) => (<Card key={camera.id} camera={camera} onClick={handleModalOpen }/>)) : <Spinner/>}
                   </div>
                 </div>
               </div>
