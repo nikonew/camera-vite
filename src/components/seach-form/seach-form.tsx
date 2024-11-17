@@ -1,7 +1,7 @@
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { useAppSelector } from '../../hook/hook-store';
 import { Link} from 'react-router-dom';
-import { MIN_NUMBER_OF_CHARACTERS_SEACH } from '../../const';
+import { MIN_NUMBER_OF_CHARACTERS } from '../../const';
 import { TCameras } from '../../types/types';
 import cn from 'classnames';
 import { AppRoute } from '../../app/router/router';
@@ -83,7 +83,7 @@ export default function SeachForm ():JSX.Element {
             onChange={handleChangeSearchInput}
           />
         </label>
-        {searchData.length !== 0 && query.length >= MIN_NUMBER_OF_CHARACTERS_SEACH &&
+        {searchData.length !== 0 && query.length >= MIN_NUMBER_OF_CHARACTERS &&
         <ul className="form-search__select-list">
           {searchData.map((camera) => (
             <Link to={`${AppRoute.Product}/${camera.id}`} key={camera.id}>

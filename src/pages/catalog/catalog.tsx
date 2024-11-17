@@ -8,15 +8,16 @@ import { useAppSelector } from '../../hook/hook-store';
 import CatalogModalCall from '../../components/catalog-modal-call/catalog-madal-call';
 import { TCameras } from '../../types/types';
 import SortCatalog from '../../components/sort-catalog/sort-catalog';
-import { selectSortCameras } from '../../store/selectors/cameras-selectors';
+import { selectCurrentCameras} from '../../store/selectors/cameras-selectors';
 import Spinner from '../../components/spinner-coponent/spinner';
+import Pagination from '../../components/pagination/pagination';
 
 
 export default function Catalog () :JSX.Element {
   const [isMounted, setMounted] = useState(false);
   const [clickCamera, setClickCamera] = useState<TCameras['id'] | null>(null);
 
-  const currentCameras = useAppSelector(selectSortCameras);
+  const currentCameras = useAppSelector(selectCurrentCameras);
   const selectCamera = clickCamera ? currentCameras.find((currentCamera)=> currentCamera.id === clickCamera) ?? null : null;
 
 
@@ -50,6 +51,7 @@ export default function Catalog () :JSX.Element {
                   <div className="cards catalog__cards">
                     {currentCameras.length !== 0 ? currentCameras.map((camera) => (<Card key={camera.id} camera={camera} onClick={handleModalOpen }/>)) : <Spinner/>}
                   </div>
+                  <Pagination/>
                 </div>
               </div>
             </div>
