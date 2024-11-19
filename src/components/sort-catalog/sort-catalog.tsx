@@ -1,23 +1,29 @@
 import { useMemo } from 'react';
-import { SortOrder, SortType } from '../../const';
+import { SortOrder, SortType, START_PAGE } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hook/hook-store';
-import { selectSortOrder, selectSortType } from '../../store/selectors/cameras-selectors';
-import { changeSortOrder, changeSortType } from '../../store/slice/cameras-slice';
+import { selectCurrentPage, selectSortOrder, selectSortType } from '../../store/selectors/cameras-selectors';
+import { changeCurrentPage, changeSortOrder, changeSortType } from '../../store/slice/cameras-slice';
 
 
 export default function SortCatalog ():JSX.Element {
   const dispatch = useAppDispatch();
   const currentSortType = useAppSelector(selectSortType);
   const currentSortOrder = useAppSelector(selectSortOrder);
-
+  const currentPage = useAppSelector(selectCurrentPage);
 
   const handlerSortTypeChange = useMemo(() => (type: SortType) => {
     dispatch(changeSortType({sortType: type}));
-  }, [dispatch]);
+    if(currentPage !== START_PAGE){
+      dispatch(changeCurrentPage({currentPage: START_PAGE}));
+    }
+  }, [currentPage, dispatch]);
 
   const handlerSortOrderChange = useMemo(() => (order: SortOrder) => {
     dispatch(changeSortOrder({sortOrder: order}));
-  }, [dispatch]);
+    if(currentPage !== START_PAGE){
+      dispatch(changeCurrentPage({currentPage: START_PAGE}));
+    }
+  }, [currentPage, dispatch]);
 
   return (
     <div className="catalog-sort">

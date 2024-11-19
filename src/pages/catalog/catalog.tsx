@@ -11,6 +11,7 @@ import SortCatalog from '../../components/sort-catalog/sort-catalog';
 import { selectCurrentCameras} from '../../store/selectors/cameras-selectors';
 import Spinner from '../../components/spinner-coponent/spinner';
 import Pagination from '../../components/pagination/pagination';
+import FilterContainer from '../../components/filters-catalog/filter-container';
 
 
 export default function Catalog () :JSX.Element {
@@ -44,7 +45,8 @@ export default function Catalog () :JSX.Element {
               <h1 className="title title--h2">Каталог фото- и видеотехники</h1>
               <div className="page-content__columns">
                 <div className="catalog__aside">
-                  <img src="img/banner.png" />
+                  <img src="img/banner.png" hidden/>
+                  <FilterContainer/>
                 </div>
                 <div className="catalog__content">
                   <SortCatalog/>
