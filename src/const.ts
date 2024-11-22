@@ -22,20 +22,27 @@ export enum SortOrder {
     Down = 'по убыванию',
   }
 
-export enum Level {
-    Zero = 'Нулевой',
-    NonProfessional = 'Любительский',
-    Professional = 'Профессиональный',
-  }
+export const CATEGORY = {
+  PhotoCamera: 'Фотоаппарат',
+  VideoCamera: 'Видеокамера',
+} as const;
 
-export enum Category {
-    Photocamera = 'Фотоаппарат',
-    Videocamera = 'Видеокамера',
-  }
+export type FilteredCategory = typeof CATEGORY[keyof typeof CATEGORY]
 
-export enum Type {
-    Digital = 'Цифровая',
-    Film = 'Плёночная',
-    Snapshot = 'Моментальная',
-    Collection = 'Коллекционная',
-  }
+export const TYPE = {
+  Digital: 'Цифровая',
+  Film: 'Плёночная',
+  Snapshot: 'Моментальная',
+  Collection: 'Коллекционная',
+} as const;
+export type FilteredType = typeof TYPE[keyof typeof TYPE]
+
+export const LEVEL = {
+  Zero: 'Нулевой',
+  NonProfessional: 'Любительский',
+  Professional: 'Профессиональный',
+} as const;
+
+export type FilteredLevel = typeof LEVEL[keyof typeof LEVEL]
+
+

@@ -2,7 +2,7 @@ import { TCameras } from '../../types/types';
 import { fetchAllCameras } from '../thunk/thunk';
 import { RequestStatus, SortOrder, SortType, START_PAGE} from '../../const';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { TFilteringType } from '../../types/filter-type';
+import { FilteredCategory, FilteredLevel, FilteredType } from '../../const';
 
 
 type CamerasState = {
@@ -10,7 +10,11 @@ type CamerasState = {
     status: RequestStatus;
     sortType: SortType;
     sortOrder: SortOrder;
-    filtering: TFilteringType;
+    priceMin: number;
+    priceMax: number;
+    level: FilteredLevel[];
+    category: FilteredCategory | null;
+    type: FilteredType[];
     currentPage: number;
 }
 
@@ -19,13 +23,11 @@ const initialState: CamerasState = {
   status: RequestStatus.Idle,
   sortType: SortType.Price,
   sortOrder: SortOrder.Up,
-  filtering: {
-    price: null,
-    priceUp: null,
-    level: [],
-    category: null,
-    type: []
-  },
+  priceMin: 0,
+  priceMax: 0,
+  level: [],
+  category: null,
+  type: [],
   currentPage: START_PAGE
 };
 
@@ -54,15 +56,29 @@ export const camerasSlice = createSlice({
     changeSortOrder: (state, action: PayloadAction<{sortOrder: SortOrder}>) => {
       state.sortOrder = action.payload.sortOrder;
     },
-    changeFiltering: (state, action: PayloadAction<{filtering: TFilteringType}>) => {
-      state.filtering = action.payload.filtering;
+    changeCategory: (state, action: PayloadAction<{category: FilteredCategory}>) => {
+      state.category = action.payload.category;
+    },
+    changeType: (state, action: PayloadAction<FilteredType>) => {
+      if (!state.type.includes(action.payload)) {
+        state.type.push(action.payload);
+      } else {
+        state.type = state.type.filter((type) => type !== action.payload);
+      }
+    },
+    changeLevel: (state, action: PayloadAction<FilteredLevel>) =>{
+      if (!state.level.includes(action.payload)) {
+        state.level.push(action.payload);
+      } else {
+        state.level = state.level.filter((level) => level !== action.payload);
+      }
     },
     changeCurrentPage: (state, action: PayloadAction<{currentPage: number}>) => {
       state.currentPage = action.payload.currentPage;
-    }
-  },
+    },
 
+  }
 });
 
-export const {changeSortType, changeSortOrder, changeSortCatalog, changeCurrentPage, changeFiltering} = camerasSlice.actions;
+export const {changeSortType, changeSortOrder, changeSortCatalog, changeCurrentPage, changeCategory, changeType, changeLevel} = camerasSlice.actions;
 
