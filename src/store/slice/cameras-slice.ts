@@ -14,6 +14,7 @@ type CamerasState = {
     level: FilteredLevel[];
     category: FilteredCategory | null;
     type: FilteredType[];
+    isResetFilter: boolean;
     currentPage: number;
 }
 
@@ -27,6 +28,7 @@ const initialState: CamerasState = {
   level: [],
   category: null,
   type: [],
+  isResetFilter: false,
   currentPage: START_PAGE
 };
 
@@ -80,9 +82,17 @@ export const camerasSlice = createSlice({
     },
     changePriceMax: (state, action: PayloadAction<number>) => {
       state.priceMax = action.payload;
+    },
+    resetFilters: (state) => {
+      state.priceMin = 0;
+      state.priceMax = Infinity;
+      state.category = null;
+      state.type = [];
+      state.level = [];
+      state.isResetFilter = false;
     }
   }
 });
 
-export const {changeSortType, changeSortOrder, changeSortCatalog, changeCurrentPage, changeCategory, changeType, changeLevel, changePriceMin, changePriceMax} = camerasSlice.actions;
+export const {changeSortType, changeSortOrder, changeSortCatalog, changeCurrentPage, changeCategory, changeType, changeLevel, changePriceMin, changePriceMax, resetFilters} = camerasSlice.actions;
 

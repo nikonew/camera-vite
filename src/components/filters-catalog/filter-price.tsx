@@ -4,7 +4,11 @@ import { selectCameras, selectFilteringCameras, selectFilterPriceMax, selectFilt
 import { changePriceMax, changePriceMin } from '../../store/slice/cameras-slice';
 import { getPriceMax, getPriceMin } from '../../util';
 
-export default function FilterPrice ():JSX.Element {
+type FilterPriceProps = {
+  resetFilters: boolean;
+};
+
+export default function FilterPrice ({resetFilters}: FilterPriceProps):JSX.Element {
   const dispatch = useAppDispatch();
   const currentPriceMin = useAppSelector(selectFilterPriceMin);
   const currentPriceMax = useAppSelector(selectFilterPriceMax);
@@ -20,9 +24,11 @@ export default function FilterPrice ():JSX.Element {
   const priceMaxFiltered = getPriceMax(filteredCatalogList);
 
   useEffect (() => {
-    setPriceMin(0);
-    setPriceMax(0);
-  }, []);
+    if (resetFilters) {
+      setPriceMin(0);
+      setPriceMax(0);
+    }
+  }, [resetFilters]);
 
   const checkPriceMin = () => {
     if (!priceMin) {
