@@ -1,7 +1,8 @@
-import { FilteredLevel, LEVEL } from '../../const';
+import { LEVEL } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hook/hook-store';
 import { selectFilterLevel } from '../../store/selectors/cameras-selectors';
 import { changeLevel } from '../../store/slice/cameras-slice';
+import { FilteredLevel } from '../../types/types';
 
 export default function FilterLevel ():JSX.Element {
   const dispatch = useAppDispatch();

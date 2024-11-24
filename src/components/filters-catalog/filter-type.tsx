@@ -1,7 +1,8 @@
-import { CATEGORY, FilteredType, TYPE } from '../../const';
+import { CATEGORY, TYPE } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hook/hook-store';
 import { selectFilterCategory, selectFilterType } from '../../store/selectors/cameras-selectors';
 import { changeType } from '../../store/slice/cameras-slice';
+import { FilteredType } from '../../types/types';
 
 export default function FilterType ():JSX.Element {
   const dispatch = useAppDispatch();

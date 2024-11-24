@@ -1,8 +1,7 @@
-import { TCameras } from '../../types/types';
+import { FilteredCategory, FilteredLevel, FilteredType, TCameras } from '../../types/types';
 import { fetchAllCameras } from '../thunk/thunk';
 import { RequestStatus, SortOrder, SortType, START_PAGE} from '../../const';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { FilteredCategory, FilteredLevel, FilteredType } from '../../const';
 
 
 type CamerasState = {
@@ -56,8 +55,8 @@ export const camerasSlice = createSlice({
     changeSortOrder: (state, action: PayloadAction<{sortOrder: SortOrder}>) => {
       state.sortOrder = action.payload.sortOrder;
     },
-    changeCategory: (state, action: PayloadAction<{category: FilteredCategory}>) => {
-      state.category = action.payload.category;
+    changeCategory: (state, action: PayloadAction<FilteredCategory>) => {
+      state.category = action.payload;
     },
     changeType: (state, action: PayloadAction<FilteredType>) => {
       if (!state.type.includes(action.payload)) {
@@ -76,9 +75,14 @@ export const camerasSlice = createSlice({
     changeCurrentPage: (state, action: PayloadAction<{currentPage: number}>) => {
       state.currentPage = action.payload.currentPage;
     },
-
+    changePriceMin: (state, action: PayloadAction<number>) => {
+      state.priceMin = action.payload;
+    },
+    changePriceMax: (state, action: PayloadAction<number>) => {
+      state.priceMax = action.payload;
+    }
   }
 });
 
-export const {changeSortType, changeSortOrder, changeSortCatalog, changeCurrentPage, changeCategory, changeType, changeLevel} = camerasSlice.actions;
+export const {changeSortType, changeSortOrder, changeSortCatalog, changeCurrentPage, changeCategory, changeType, changeLevel, changePriceMin, changePriceMax} = camerasSlice.actions;
 

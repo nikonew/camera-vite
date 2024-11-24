@@ -1,5 +1,5 @@
-import { SortOrder, SortType, FilteredCategory, FilteredLevel, FilteredType } from './const';
-import { TCameras } from './types/types';
+import { SortOrder, SortType } from './const';
+import { FilteredCategory, FilteredLevel, FilteredType, TCameras } from './types/types';
 
 export const formatDateOption = (isoDate: string) => {
   const date = new Date(isoDate);
@@ -41,24 +41,35 @@ export const filterCatalogCategory = (cameras: TCameras[], filterCategory: Filte
     return cameras;
   }
 
-  const filteredCatalog = [...cameras].filter((camera) => camera.category === filterCategory);
-  return filteredCatalog;
+  const filteredCatalogCategory = [...cameras].filter((camera) => camera.category === filterCategory);
+  return filteredCatalogCategory;
 };
 
 export const filterCatalogType = (cameras: TCameras[], type: FilteredType[]) => {
   if (!type?.length) {
     return cameras;
   }
-  const filteredCatalogList = [...cameras].filter((camera) => type.includes(camera.type));
-  return filteredCatalogList;
+  const filteredCatalogType = [...cameras].filter((camera) => type.includes(camera.type));
+  return filteredCatalogType;
 };
 
 export const filterCatalogLevel = (cameras: TCameras[], level: FilteredLevel[]) => {
   if (!level?.length) {
     return cameras;
   }
-  const filteredCatalogList = [...cameras].filter((camera) => level.includes(camera.level));
-  return filteredCatalogList;
+  const filteredCatalogLevel = [...cameras].filter((camera) => level.includes(camera.level));
+  return filteredCatalogLevel;
+};
+
+export const filterCatalogPrice = (cameras: TCameras[], priceMin: number, priceMax: number) => {
+  if (!priceMin && !priceMax) {
+    return cameras;
+  }
+  if (!priceMax) {
+    priceMax = Infinity;
+  }
+  const filteredCatalogPrice = [...cameras].filter((camera) => camera.price >= priceMin && camera.price <= priceMax);
+  return filteredCatalogPrice;
 };
 
 export const filterCatalog = (
@@ -66,9 +77,28 @@ export const filterCatalog = (
   category: FilteredCategory | null,
   type: FilteredType[],
   level: FilteredLevel[],
+  priceMin: number,
+  priceMax: number
 ) => {
   const filteredCategory = filterCatalogCategory(cameras, category);
   const filteredType = filterCatalogType(filteredCategory, type);
   const filteredLevel = filterCatalogLevel(filteredType, level);
-  return filteredLevel;
+  const filteredPrice = filterCatalogPrice(filteredLevel, priceMin, priceMax);
+  return filteredPrice;
+};
+
+export const getPriceMin = (cameras: TCameras[]) => {
+  if(!cameras.length) {
+    return 0;
+  }
+  const sortPriceMin = [...cameras].sort((a, b) => a.price - b.price);
+  return sortPriceMin[0].price;
+};
+
+export const getPriceMax = (cameras: TCameras[]) => {
+  if(!cameras.length) {
+    return 0;
+  }
+  const sortPriceMax = [...cameras].sort((a, b) => b.price - a.price);
+  return sortPriceMax[0].price;
 };

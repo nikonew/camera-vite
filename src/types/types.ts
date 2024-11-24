@@ -1,11 +1,14 @@
+import { CATEGORY, LEVEL, TYPE } from '../const';
+
+
 export type TCameras = {
     'id': number;
     'name': string;
     'vendorCode': string;
-    'type': string;
-    'category': string;
+    'type': FilteredType;
+    'category': FilteredCategory;
     'description': string;
-    'level': string;
+    'level': FilteredLevel;
     'price': number;
     'rating': number;
     'reviewCount': number;
@@ -31,3 +34,7 @@ export type TOrder = {
     coupon: string | null;
     tel: string;
   }
+
+export type FilteredCategory = typeof CATEGORY[keyof typeof CATEGORY]
+export type FilteredType = typeof TYPE[keyof typeof TYPE]
+export type FilteredLevel = typeof LEVEL[keyof typeof LEVEL]

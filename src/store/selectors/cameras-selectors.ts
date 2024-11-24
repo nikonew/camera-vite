@@ -1,9 +1,8 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { PER_PAGE_CAMERAS_COUNT, SortOrder, SortType } from '../../const';
-import { TCameras } from '../../types/types';
+import { TCameras, FilteredCategory, FilteredLevel, FilteredType } from '../../types/types';
 import { RootState } from '../store-types/store-types';
-import { filterCatalog, getSortCatalog } from '../../util';
-import { FilteredCategory, FilteredLevel, FilteredType } from '../../const';
+import { filterCatalog, getSortCatalog} from '../../util';
 
 
 export const selectCameras = (state: RootState): TCameras[] => state.cameras.cameras;
@@ -13,10 +12,13 @@ export const selectCurrentPage = (state: RootState): number => state.cameras.cur
 export const selectFilterCategory = (state: RootState): FilteredCategory | null => state.cameras.category;
 export const selectFilterType = (state: RootState): FilteredType[] => state.cameras.type;
 export const selectFilterLevel = (state: RootState): FilteredLevel[] => state.cameras.level;
+export const selectFilterPriceMin = (state: RootState): number => state.cameras.priceMin;
+export const selectFilterPriceMax = (state: RootState): number => state.cameras.priceMax;
+
 
 export const selectFilteringCameras = createSelector(
-  [selectCameras, selectFilterCategory, selectFilterType, selectFilterLevel],
-  (cameras, category, type, level) => filterCatalog(cameras, category, type, level)
+  [selectCameras, selectFilterCategory, selectFilterType, selectFilterLevel, selectFilterPriceMin, selectFilterPriceMax],
+  (cameras, category, type, level, priceMin, priceMax) => filterCatalog(cameras, category, type, level, priceMin, priceMax)
 );
 
 

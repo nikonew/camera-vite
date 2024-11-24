@@ -1,7 +1,8 @@
-import { CATEGORY, FilteredCategory } from '../../const';
+import { CATEGORY } from '../../const';
 import { changeCategory } from '../../store/slice/cameras-slice';
 import { useAppDispatch, useAppSelector } from '../../hook/hook-store';
 import { selectFilterCategory } from '../../store/selectors/cameras-selectors';
+import { FilteredCategory } from '../../types/types';
 
 
 export default function FilterCategory ():JSX.Element {
@@ -9,7 +10,7 @@ export default function FilterCategory ():JSX.Element {
   const currentCategory = useAppSelector(selectFilterCategory);
 
   const handleInputCategoryClick = (category: FilteredCategory) => {
-    dispatch(changeCategory({category}));
+    dispatch(changeCategory(category));
   };
 
   return (

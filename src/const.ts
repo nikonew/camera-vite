@@ -27,7 +27,6 @@ export const CATEGORY = {
   VideoCamera: 'Видеокамера',
 } as const;
 
-export type FilteredCategory = typeof CATEGORY[keyof typeof CATEGORY]
 
 export const TYPE = {
   Digital: 'Цифровая',
@@ -35,14 +34,12 @@ export const TYPE = {
   Snapshot: 'Моментальная',
   Collection: 'Коллекционная',
 } as const;
-export type FilteredType = typeof TYPE[keyof typeof TYPE]
+
 
 export const LEVEL = {
   Zero: 'Нулевой',
   NonProfessional: 'Любительский',
   Professional: 'Профессиональный',
 } as const;
-
-export type FilteredLevel = typeof LEVEL[keyof typeof LEVEL]
 
 
