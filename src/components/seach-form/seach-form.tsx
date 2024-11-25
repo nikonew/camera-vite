@@ -5,6 +5,7 @@ import { TCameras } from '../../types/types';
 import cn from 'classnames';
 import { selectCameras } from '../../store/selectors/cameras-selectors';
 import { useNavigate } from 'react-router-dom';
+import { AppRoute } from '../../app/router/router';
 
 
 export default function SeachForm ():JSX.Element {
@@ -42,7 +43,12 @@ export default function SeachForm ():JSX.Element {
     } else if (event.key === 'ArrowDown') {
       event.preventDefault();
       setSelectedItem((prevItem) => (prevItem === searchData.length - 1 ? -1 : prevItem + 1));
+    } else if (event.key === 'Enter' && selectedItem !== -1) {
+      event.preventDefault();
+      const focusedCamera = searchData[selectedItem];
+      navigate(`${AppRoute.Product}/${focusedCamera.id}`);
     }
+
   };
 
   const handelReset = () => {
