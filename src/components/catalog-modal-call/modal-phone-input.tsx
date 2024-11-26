@@ -5,9 +5,10 @@ import { TOrder } from '../../types/types';
 
 type ModalPhoneInputProps = {
   idCamera: number;
+  onClose: () => void;
 }
 
-export default function ModalPhoneInput ({idCamera}: ModalPhoneInputProps): JSX.Element {
+export default function ModalPhoneInput ({idCamera, onClose}: ModalPhoneInputProps): JSX.Element {
   const dispatch = useAppDispatch();
 
 
@@ -18,6 +19,7 @@ export default function ModalPhoneInput ({idCamera}: ModalPhoneInputProps): JSX.
       camerasIds: [idCamera]
     };
     dispatch(postOrder(order));
+    onClose();
   };
 
   return (

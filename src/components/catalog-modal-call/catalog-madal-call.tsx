@@ -102,7 +102,7 @@ export default function CatalogModalCall ({camera, onClose}: CatalogModalCallPro
               </p>
             </div>
           </div>
-          <ModalPhoneInput idCamera={id}/>
+          <ModalPhoneInput idCamera={id} onClose={onClose}/>
           <button className="cross-btn" type="button" aria-label="Закрыть попап" onClick={onClose}>
             <svg width={10} height={10} aria-hidden="true">
               <use xlinkHref="#icon-close" />

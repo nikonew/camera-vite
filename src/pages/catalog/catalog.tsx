@@ -51,7 +51,7 @@ export default function Catalog () :JSX.Element {
                 <div className="catalog__content">
                   <SortCatalog/>
                   <div className="cards catalog__cards">
-                    {currentCameras.length !== 0 ? currentCameras.map((camera) => (<Card key={camera.id} camera={camera} onClick={handleModalOpen }/>)) : <Spinner/>}
+                    {currentCameras.length !== 0 ? currentCameras.map((camera) => (<Card key={camera.id} camera={camera} onClick={handleModalOpen}/>)) : <Spinner/>}
                   </div>
                   <Pagination/>
                 </div>

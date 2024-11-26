@@ -36,7 +36,7 @@ export const camerasSlice = createSlice({
   extraReducers: (builder) =>
     builder
       .addCase(fetchAllCameras.pending, (state) => {
-        state.status = RequestStatus.Loading;
+        state.status = RequestStatus.Success;
       })
       .addCase(fetchAllCameras.fulfilled, (state, action) => {
         state.status = RequestStatus.Success;
