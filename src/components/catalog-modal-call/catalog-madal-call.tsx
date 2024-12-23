@@ -34,7 +34,7 @@ export default function CatalogModalCall ({camera, onClose}: CatalogModalCallPro
     const firstElement = focusableElements?.[0];
     const lastElement = focusableElements?.[focusableElements.length - 1];
 
-    const handleTabKey = (event: KeyboardEvent) => {
+    const handleKey = (event: KeyboardEvent) => {
       if (!focusableElements || focusableElements.length === 0) {
         return;
       }
@@ -50,10 +50,10 @@ export default function CatalogModalCall ({camera, onClose}: CatalogModalCallPro
       }
     };
 
-    window.addEventListener('keydown', handleTabKey);
+    window.addEventListener('keydown', handleKey);
 
     return () => {
-      window.removeEventListener('keydown', handleTabKey);
+      window.removeEventListener('keydown', handleKey);
     };
   }, []);
 

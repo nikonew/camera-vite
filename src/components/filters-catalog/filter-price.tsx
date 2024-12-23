@@ -135,7 +135,6 @@ export default function FilterPrice ({resetFilters}: FilterPriceProps):JSX.Eleme
               onBlur={handleBlurPriceMax}
               onKeyDown={handleInputPriceMaxKeyDown}
               value={priceMax || ''}
-              //min={Number.MIN_VALUE}
             />
           </label>
         </div>

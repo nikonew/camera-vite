@@ -7,12 +7,12 @@ export default function ProductTubs ({vendorCode, category, type, level, descrip
   const [isClickDescription, setIsClickDescription] = useState(false);
   const [isClickCharacteristics, setIsClickCharacteristics] = useState(true);
 
-  const handleClickCharacteristics = useCallback(() => {
+  const handleClickButtonCharacteristics = useCallback(() => {
     setIsClickDescription(false);
     setIsClickCharacteristics(true);
   }, []);
 
-  const handleClickDescription = useCallback(() => {
+  const handleClickButtonDescription = useCallback(() => {
     setIsClickDescription(true);
     setIsClickCharacteristics(false);
   }, []);
@@ -22,13 +22,13 @@ export default function ProductTubs ({vendorCode, category, type, level, descrip
       <div className="tabs__controls product__tabs-controls">
         <button className={`tabs__control ${isClickCharacteristics ? 'is-active' : ''}`}
           type="button"
-          onClick = {handleClickCharacteristics}
+          onClick = {handleClickButtonCharacteristics}
         >
         Характеристики
         </button>
         <button className={`tabs__control ${isClickDescription ? 'is-active' : ''}`}
           type="button"
-          onClick={handleClickDescription}
+          onClick={handleClickButtonDescription}
         >
         Описание
         </button>

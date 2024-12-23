@@ -13,18 +13,13 @@ export default function Pagination (): JSX.Element {
   const pagesCount = Math.ceil(paginationCatalog.length / PER_PAGE_CAMERAS_COUNT);
 
   useEffect(() => {
-    let isMounted = true;
 
-    if (isMounted) {
-      if(pagesCount >= PAGINATION_CATALOG_COUNT){
-        setPages(Array.from({length: PAGINATION_CATALOG_COUNT }, (_, i) => i + 1));
-      } else {
-        setPages(Array.from({length: pagesCount }, (_, i) => i + 1));
-      }
+    if(pagesCount >= PAGINATION_CATALOG_COUNT){
+      setPages(Array.from({length: PAGINATION_CATALOG_COUNT }, (_, i) => i + 1));
+    } else {
+      setPages(Array.from({length: pagesCount }, (_, i) => i + 1));
     }
-    return () => {
-      isMounted = false;
-    };
+
   }, [pagesCount]);
 
 
