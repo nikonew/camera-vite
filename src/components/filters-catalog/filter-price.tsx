@@ -116,7 +116,7 @@ export default function FilterPrice ({resetFilters}: FilterPriceProps):JSX.Eleme
             <input
               type="number"
               name="price"
-              placeholder="от"
+              placeholder={priceMinFiltered.toString()}
               onChange={handleChangePriceMin}
               onBlur={handleBlurPriceMin}
               onKeyDown={handleInputPriceMinKeyDown}
@@ -130,7 +130,7 @@ export default function FilterPrice ({resetFilters}: FilterPriceProps):JSX.Eleme
             <input
               type="number"
               name="priceUp"
-              placeholder="до"
+              placeholder={priceMaxFiltered.toString()}
               onChange={handleChangePriceMax}
               onBlur={handleBlurPriceMax}
               onKeyDown={handleInputPriceMaxKeyDown}

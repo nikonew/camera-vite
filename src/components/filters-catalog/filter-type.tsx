@@ -7,7 +7,7 @@ import { FilteredType } from '../../types/types';
 export default function FilterType ():JSX.Element {
   const dispatch = useAppDispatch();
   const currentType = useAppSelector(selectFilterType);
-  const category = useAppSelector(selectFilterCategory);
+  const category = useAppSelector(selectFilterCategory) === CATEGORY.VideoCamera;
 
   const handleInputTypeClick = (type: FilteredType) => {
     dispatch(changeType(type));
@@ -23,7 +23,7 @@ export default function FilterType ():JSX.Element {
               name={type.toLowerCase()}
               checked={currentType.includes(type)}
               onChange={() => handleInputTypeClick(type)}
-              disabled={category === CATEGORY.VideoCamera && (type === TYPE.Snapshot || type === TYPE.Film)}
+              disabled={category && (type === TYPE.Snapshot || type === TYPE.Film)}
               tabIndex={0}
             />
             <span className="custom-checkbox__icon" />

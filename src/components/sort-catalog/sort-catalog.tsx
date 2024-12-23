@@ -12,6 +12,8 @@ export default function SortCatalog ():JSX.Element {
   const currentPage = useAppSelector(selectCurrentPage);
 
   const handlerSortTypeChange = useMemo(() => (type: SortType) => {
+    const urlParams = new URLSearchParams(location.search);
+    urlParams.set('type', type);
     dispatch(changeSortType({sortType: type}));
     if(currentPage !== START_PAGE){
       dispatch(changeCurrentPage({currentPage: START_PAGE}));
@@ -19,6 +21,8 @@ export default function SortCatalog ():JSX.Element {
   }, [currentPage, dispatch]);
 
   const handlerSortOrderChange = useMemo(() => (order: SortOrder) => {
+    const urlParams = new URLSearchParams(location.search);
+    urlParams.set('order', order);
     dispatch(changeSortOrder({sortOrder: order}));
     if(currentPage !== START_PAGE){
       dispatch(changeCurrentPage({currentPage: START_PAGE}));
