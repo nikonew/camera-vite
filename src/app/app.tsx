@@ -7,6 +7,7 @@ import { fetchAllCameras } from '../store/thunk/thunk';
 import ProductPage from '../pages/product-page/product-page';
 import NotFoundPage from '../pages/not-found-page/not-found-page';
 import { HelmetProvider } from 'react-helmet-async';
+import Basket from '../pages/basket/basket';
 
 
 export default function App(): JSX.Element {
@@ -31,6 +32,11 @@ export default function App(): JSX.Element {
           element={
             <ProductPage/>
           }
+        />
+
+        <Route
+          path={AppRoute.Basket}
+          element={<Basket />}
         />
         <Route
           path="*"

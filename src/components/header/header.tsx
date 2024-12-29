@@ -1,8 +1,12 @@
 import { Link } from 'react-router-dom';
 import SeachForm from '../seach-form/seach-form';
 import { AppRoute } from '../../app/router/router';
+import { useAppSelector } from '../../hook/hook-store';
 
 export default function Header ():JSX.Element {
+
+  const stateBasketProducts = useAppSelector((state) => state.basket.basketProducts);
+
   return (
     <header className="header" id="header">
       <div className="container">
@@ -40,11 +44,13 @@ export default function Header ():JSX.Element {
           </ul>
         </nav>
         <SeachForm/>
-        <a className="header__basket-link" href="#">
+        <Link className="header__basket-link" to={AppRoute.Basket}>
           <svg width="16" height="16" aria-hidden="true">
-            <use xlinkHref="#icon-basket"></use>
+            <use xlinkHref="#icon-basket"/>
           </svg>
-        </a>
+          {stateBasketProducts.length === 0 ? '' :
+            <span className="header__basket-count">{stateBasketProducts.length}</span>}
+        </Link>
       </div>
     </header>
   );

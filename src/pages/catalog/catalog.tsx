@@ -5,22 +5,24 @@ import Card from '../../components/card/card';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 import { useAppSelector } from '../../hook/hook-store';
-import CatalogModalCall from '../../components/catalog-modal-call/catalog-madal-call';
+//import CatalogModalCall from '../../components/catalog-modal-call/catalog-madal-call';
 import { TCameras } from '../../types/types';
 import SortCatalog from '../../components/sort-catalog/sort-catalog';
 import { selectCurrentCameras} from '../../store/selectors/cameras-selectors';
 import Spinner from '../../components/spinner-coponent/spinner';
 import Pagination from '../../components/pagination/pagination';
 import FilterContainer from '../../components/filters-catalog/filter-container';
+import AddItemBasket from '../../components/catalog-modal/add-item-basket';
+import AddItemSuccesBasket from '../../components/catalog-modal/add-item-success-basket';
 
 
 export default function Catalog () :JSX.Element {
   const [isMounted, setMounted] = useState(false);
+  const [isModalSuccess , setIsisModalSuccess] = useState(false);
   const [clickCamera, setClickCamera] = useState<TCameras['id'] | null>(null);
 
   const currentCameras = useAppSelector(selectCurrentCameras);
   const selectCamera = clickCamera ? currentCameras.find((currentCamera)=> currentCamera.id === clickCamera) ?? null : null;
-
 
   const handleModalOpen = (cameraId: TCameras['id']) => {
     setMounted(true);
@@ -32,6 +34,13 @@ export default function Catalog () :JSX.Element {
     setMounted(false);
     document.body.classList.remove('scroll-lock');
   };
+
+
+  const handleModalSuccessClose = () => {
+    setIsisModalSuccess(false);
+    document.body.classList.remove('scroll-lock');
+  };
+
 
   return (
     <div className="wrapper">
@@ -59,7 +68,8 @@ export default function Catalog () :JSX.Element {
             </div>
           </section>
         </div>
-        {isMounted && <CatalogModalCall onClose={handleModalClose} camera={selectCamera} />}
+        {isMounted && selectCamera && <AddItemBasket onClose={handleModalClose} product={selectCamera}/>}
+        {isModalSuccess && (<AddItemSuccesBasket onClose={handleModalSuccessClose}/>)}
       </main>
       <Footer/>
     </div>

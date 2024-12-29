@@ -5,6 +5,7 @@ import { productSlice } from './slice/product-slice';
 import { reviewsSlice } from './slice/reviews-slice';
 import { similarProductSlice } from './slice/similar-slice';
 import { orderPostSlice } from './slice/order-slice';
+import { basketSlice } from './slice/basket-slice';
 
 
 export const store = configureStore({
@@ -13,7 +14,8 @@ export const store = configureStore({
     [productSlice.name]:productSlice.reducer,
     [reviewsSlice.name]:reviewsSlice.reducer,
     [similarProductSlice.name]:similarProductSlice.reducer,
-    [orderPostSlice.name]:orderPostSlice.reducer
+    [orderPostSlice.name]:orderPostSlice.reducer,
+    [basketSlice.name]:basketSlice.reducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

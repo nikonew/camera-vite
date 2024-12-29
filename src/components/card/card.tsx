@@ -3,6 +3,7 @@ import { TCameras } from '../../types/types';
 import Rate from '../rate-product-card/rate/rate';
 import { AppRoute } from '../../app/router/router';
 import { scrollToTop } from '../../util';
+import { useAppSelector } from '../../hook/hook-store';
 
 type CameraCardProps = {
   camera: TCameras;
@@ -11,6 +12,8 @@ type CameraCardProps = {
 
 export default function Card ({camera, onClick}: CameraCardProps):JSX.Element {
   const {id, name, price, previewImgWebp, previewImgWebp2x, previewImg, previewImg2x, reviewCount, rating} = camera;
+
+  const selectedCamerasBasket = useAppSelector((state) => state.basket.basketProducts);
 
   const handleClick = () => {
     onClick(id);
@@ -50,19 +53,29 @@ export default function Card ({camera, onClick}: CameraCardProps):JSX.Element {
         </p>
       </div>
       <div className="product-card__buttons">
-        <button
-          className="btn btn--purple product-card__btn"
-          type="button"
-          onClick={handleClick}
-        >
-          Купить
-        </button>
+        {
+          selectedCamerasBasket.find((element) => element.id === id)?.id === id
+            ?
+            <Link className="btn btn--purple-border" to={AppRoute.Basket}>
+              <svg width="16" height="16" aria-hidden="true">
+                <use xlinkHref="#icon-basket"></use>
+              </svg>В корзине
+            </Link>
+            :
+            <button
+              className="btn btn--purple product-card__btn"
+              type="button"
+              onClick={handleClick}
+            >
+            Купить
+            </button>
+        }
         <Link
           onClick={() => scrollToTop()}
           className="btn btn--transparent"
           to={`${AppRoute.Product}/${id}`}
         >
-          Подробнее
+            Подробнее
         </Link>
       </div>
     </div>
