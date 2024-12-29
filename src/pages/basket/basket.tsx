@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import BasketProductsContainer from '../../components/basket-components/basket-products-container/basket-products-container';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
@@ -7,9 +6,7 @@ import { useAppSelector } from '../../hook/hook-store';
 export default function Basket ():JSX.Element {
 
   const stateBasketProducts = useAppSelector((state) => state.basket.basketProducts);
-  useEffect(()=> {
-    localStorage.setItem
-  })
+
 
   return (
     <div className="wrapper">
